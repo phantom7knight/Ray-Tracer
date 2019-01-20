@@ -1,3 +1,6 @@
+#pragma once
+
+
 class Ray
 {
 public:
@@ -11,6 +14,8 @@ public:
 
 	inline glm::vec3 getOrigin();
 	inline glm::vec3 getDirection();
+
+	glm::vec3 PointRayIntersection(float t);
 private:
 
 	glm::vec3 m_rayDir;
