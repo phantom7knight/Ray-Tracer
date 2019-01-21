@@ -129,6 +129,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Use</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Use</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Source\Camera.cpp" />
     <ClCompile Include="Source\Intersection.cpp" />
     <ClCompile Include="Source\Ray.cpp" />
     <ClCompile Include="Source\Shapes.cpp" />
@@ -136,6 +137,7 @@
   <ItemGroup>
     <ClInclude Include="MathDefs.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\hitablelist.h" />
     <ClInclude Include="Source\Intersection.h" />
     <ClInclude Include="Source\Ray.h" />

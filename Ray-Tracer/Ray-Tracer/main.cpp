@@ -3,7 +3,8 @@
 #include "Source/Ray.h"
 #include "Source/hitablelist.h"
 #include "Source/Shapes.h"
-//#include "MathDefs.hpp"
+#include "Source/Camera.h"
+
 
 //glm::vec3 Normalize(glm::vec3 right)
 //{
@@ -96,6 +97,7 @@ int main()
 	list[1] = new Sphere(glm::vec3( 0.2, 0, -1), 0.15);
 
 	Intersection* world = new hitable_list(list, 2);
+	Camera cam;
 
 	for (int j = IMAGE_HEIGHT -1; j >= 0; j--)
 	{
@@ -104,13 +106,27 @@ int main()
 			//float r = (float)(i) / (float) (IMAGE_WIDTH);
 			//float g = (float)(j) / (float) (IMAGE_HEIGHT);
 			//float b = 0.2;
-
-			float u = float(i) / (float)IMAGE_WIDTH;
-			float v = float(j) / (float)IMAGE_HEIGHT;
-
-			Ray ray(origin, lower_left_corner + u * horizontal + v * vertical);
+		
+			glm::vec3 getColor(0, 0, 0);
 			
-			glm::vec3 getColor = GetColor(ray, world); // glm::vec3(r, g, b);
+			for (int s = 0; s < SAMPLE_COUNT; ++s)
+			{
+				float u = float(i + (double)(rand() / RAND_MAX)) / (float)IMAGE_WIDTH;
+				float v = float(j + (double)(rand() / RAND_MAX)) / (float)IMAGE_HEIGHT;
+				
+
+				Ray ray = cam.get_Ray(u, v);
+				
+				getColor += GetColor(ray, world);
+
+			}
+
+			//Anti Aliasing take avg of the pixel sample count
+
+			getColor /= float(SAMPLE_COUNT);
+
+			//Ray ray(origin, lower_left_corner + u * horizontal + v * vertical);
+			
 			
 			int ir = int(255.99 * getColor.x);
 			int ig = int(255.99 * getColor.y);

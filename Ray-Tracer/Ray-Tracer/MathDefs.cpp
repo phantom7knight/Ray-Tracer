@@ -1,6 +1,8 @@
 #pragma once
 #include "MathDefs.h"
 
+
+
 	glm::vec3 Normalize(glm::vec3 right)
 	{
 		return  right / (sqrt(right[0] * right[0] + right[1] * right[1] + right[2] * right[2]));

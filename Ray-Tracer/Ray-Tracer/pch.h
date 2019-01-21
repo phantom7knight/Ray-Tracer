@@ -14,6 +14,10 @@
 #include <map>
 #include <iostream>
 #include <fstream>
+#include <random>
+#include <cstdlib>
+
+
 
 //GLM
 #include "Dependencies/GLM/glm/glm/vec3.hpp"
@@ -37,6 +41,8 @@
 
 #define IMAGE_WIDTH  testX_1
 #define IMAGE_HEIGHT testY_1
+
+#define SAMPLE_COUNT 10
 
 
 
