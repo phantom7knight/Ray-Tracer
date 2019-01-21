@@ -8,7 +8,7 @@ bool Sphere::hit(Ray & ray, float t_min, float t_max, hit_record & rec) const
 	glm::vec3 OC = ray.getOrigin() - m_center;
 
 	float a = dotProduct(ray.getDirection(), ray.getDirection());
-	float b = 2.0 * dotProduct(OC, ray.getDirection());
+	float b = dotProduct(OC, ray.getDirection());
 	float c = dotProduct(OC, OC) - m_radius * m_radius;
 	float D = b * b - a * c;
 

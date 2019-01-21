@@ -7,9 +7,9 @@ class hitable_list :public Intersection
 public:
 
 	hitable_list(){}
-	hitable_list(Intersection **l,int n)
+	hitable_list(Intersection **lis,int n)
 	{
-		Ilist = l;
+		Ilist = lis;
 		list_size = n;
 	}
 

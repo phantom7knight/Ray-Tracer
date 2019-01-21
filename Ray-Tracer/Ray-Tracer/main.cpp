@@ -91,11 +91,11 @@ int main()
 	glm::vec3 vertical(0.0,2.0,0.0);
 	glm::vec3 origin(0.0,0.0,0.0); 
 
-	Intersection *list[1];
-	list[0] = new Sphere(glm::vec3(0, 0, -100), 0.011);
-	//list[1] = new Sphere(glm::vec3(0, +2, -10), 0.25);
+	Intersection *list[2];
+	list[0] = new Sphere(glm::vec3(-0.2, 0, -1), 0.15);
+	list[1] = new Sphere(glm::vec3( 0.2, 0, -1), 0.15);
 
-	Intersection* world = new hitable_list(list, 1);
+	Intersection* world = new hitable_list(list, 2);
 
 	for (int j = IMAGE_HEIGHT -1; j >= 0; j--)
 	{
