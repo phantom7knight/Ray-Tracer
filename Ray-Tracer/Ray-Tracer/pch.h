@@ -26,8 +26,8 @@
 //Constants
 //===========================
 
-#define IMAGE_WIDTH  500//1920
-#define IMAGE_HEIGHT 300//1080
+#define IMAGE_WIDTH  500	//1920
+#define IMAGE_HEIGHT 300	//1080
 
 
 
