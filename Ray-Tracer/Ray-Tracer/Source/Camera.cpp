@@ -13,5 +13,5 @@ Camera::Camera()
 
 Ray Camera::get_Ray(float u, float v)
 {
-	return Ray(origin, lower_left_corner + u * horizontal + v * vertical -origin);
+	return Ray(origin, lower_left_corner + u * horizontal + v * vertical - origin);
 }

@@ -15,7 +15,7 @@
 
 	float vector_square(glm::vec3 right)
 	{
-		return (right.x * right.x + right.y * right.y + right.z * right.z);
+		return (( right.x * right.x) + (right.y * right.y) + (right.z * right.z));
 	}
 
 

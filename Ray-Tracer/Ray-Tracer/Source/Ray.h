@@ -12,10 +12,10 @@ public:
 	{
 	}
 
-	inline glm::vec3 getOrigin();
-	inline glm::vec3 getDirection();
+	inline glm::vec3 getOrigin() const ;
+	inline glm::vec3 getDirection()const;
 
-	glm::vec3 PointRayIntersection(float t);
+	glm::vec3 PointRayIntersection(float t)const;
 private:
 
 	glm::vec3 m_rayDir;
@@ -24,12 +24,12 @@ private:
 };
 
 
-inline glm::vec3 Ray::getOrigin()
+inline glm::vec3 Ray::getOrigin() const
 {
 	return m_rayOrigin;
 }
 
-inline glm::vec3 Ray::getDirection()
+inline glm::vec3 Ray::getDirection()const
 {
 	return m_rayDir;
 }

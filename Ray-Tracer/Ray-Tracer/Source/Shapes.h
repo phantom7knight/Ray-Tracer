@@ -8,7 +8,7 @@ public:
 	Sphere(){}
 	Sphere(glm::vec3 center, float radius): m_center(center),m_radius(radius)
 	{}
-	virtual bool hit(Ray& ray, float t_min, float t_max, hit_record& rec) const;
+	virtual bool hit(const Ray& ray, float t_min, float t_max, hit_record& rec) const;
 	
 	inline float	 getRadius();
 	inline glm::vec3 getCenter();

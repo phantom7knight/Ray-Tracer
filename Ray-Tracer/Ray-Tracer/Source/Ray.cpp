@@ -10,7 +10,7 @@ Ray::Ray(const glm::vec3 & origin, const glm::vec3 & direction)
 }
 
 
-glm::vec3 Ray::PointRayIntersection(float t)
+glm::vec3 Ray::PointRayIntersection(float t) const
 {
 	return (m_rayOrigin + t * m_rayDir);
 }

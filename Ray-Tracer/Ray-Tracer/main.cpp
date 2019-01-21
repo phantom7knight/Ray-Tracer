@@ -16,7 +16,7 @@ glm::vec3 random_point_sphere()
 	return p;
 }
 
-glm::vec3 GetColor( Ray& ray,Intersection* world)
+glm::vec3 GetColor(const Ray& ray,Intersection* world)
 {
 	hit_record rec;
 
@@ -24,10 +24,10 @@ glm::vec3 GetColor( Ray& ray,Intersection* world)
 	glm::vec3 sphere_color	= glm::vec3(1.0, 0.5, 0.5);
 	glm::vec3 sphere_center = glm::vec3(0, 0, -1);
 
-	if (world->hit(ray, 0.0, INFINITY, rec))
+	if (world->hit(ray, 0.001f, INFINITY, rec))
 	{
 		glm::vec3 target = rec.point_intersection + rec.Normal + random_point_sphere();
-		return 0.5f * GetColor( &Ray(rec.point_intersection,target - rec.point_intersection), world);//glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
+		return 0.5f * GetColor(Ray(rec.point_intersection, target - rec.point_intersection) , world);//glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
 	}
 	else
 	{
@@ -60,11 +60,6 @@ int main()
 	//==========================================================================
 
 
-	glm::vec3 lower_left_corner(-2.0, -1.0, -1.0);
-	glm::vec3 horizontal(4.0,0.0,0.0);
-	glm::vec3 vertical(0.0,2.0,0.0);
-	glm::vec3 origin(0.0,0.0,0.0); 
-
 	Intersection *list[2];
 	list[0] = new Sphere(glm::vec3(-0.2, 0, -1), 0.15);
 	list[1] = new Sphere(glm::vec3( 0.2, 0, -1), 0.15);
@@ -88,8 +83,8 @@ int main()
 				float v = float(j + getRandomNumber()) / (float)IMAGE_HEIGHT;
 				
 
-				 Ray ray = cam.get_Ray(u, v);
-				
+				Ray ray = cam.get_Ray(u, v);
+				glm::vec3 p = ray.PointRayIntersection(2.0);
 				getColor += GetColor(ray, world);
 
 			}
@@ -99,7 +94,7 @@ int main()
 			getColor /= float(SAMPLE_COUNT);
 
 			//Ray ray(origin, lower_left_corner + u * horizontal + v * vertical);
-			
+			getColor = glm::vec3(sqrt(getColor.x), sqrt(getColor.y), sqrt(getColor.z));
 			
 			int ir = int(255.99 * getColor.x);
 			int ig = int(255.99 * getColor.y);

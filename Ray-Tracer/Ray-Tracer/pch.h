@@ -34,15 +34,17 @@
 //Test Width 1
 #define testX_1 1920 
 #define testX_2 200
+#define testX_3 100
 
 //Test Width 2
 #define testY_1 1080 
 #define testY_2 100 
+#define testY_3 100 
 
-#define IMAGE_WIDTH  testX_1
-#define IMAGE_HEIGHT testY_1
+#define IMAGE_WIDTH  testX_3
+#define IMAGE_HEIGHT testY_3
 
-#define SAMPLE_COUNT 50
+#define SAMPLE_COUNT 10
 
 
 
