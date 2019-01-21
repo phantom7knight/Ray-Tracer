@@ -9,8 +9,9 @@ glm::vec3 random_point_sphere()
 {
 	glm::vec3 p;
 
-	do {
-		p =  2.0f * glm::vec3(getRandomNumber(), getRandomNumber(), getRandomNumber()) - glm::vec3(1, 1, 1);
+	do 
+	{
+		p = 2.0f * glm::vec3(getRandomNumber(), getRandomNumber(), getRandomNumber()) - glm::vec3(1, 1, 1);
 	} while (vector_square(p) >= 1.0);
 
 	return p;
@@ -27,7 +28,8 @@ glm::vec3 GetColor(const Ray& ray,Intersection* world)
 	if (world->hit(ray, 0.001f, INFINITY, rec))
 	{
 		glm::vec3 target = rec.point_intersection + rec.Normal + random_point_sphere();
-		return 0.5f * GetColor(Ray(rec.point_intersection, target - rec.point_intersection) , world);//glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
+		//return 0.5f * glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
+		return 0.5f * GetColor(Ray(rec.point_intersection, target - rec.point_intersection), world);
 	}
 	else
 	{

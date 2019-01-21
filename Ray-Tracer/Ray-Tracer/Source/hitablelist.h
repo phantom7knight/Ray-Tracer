@@ -22,7 +22,7 @@ private:
 };
 
 //We check if all the obj's in the list hit by the rays
-bool hitable_list::hit(const Ray & ray,float t_min, float t_max, hit_record & rec) const
+bool hitable_list::hit(const Ray & ray, float t_min, float t_max, hit_record & rec) const
 {
 	hit_record temp_rec;
 
