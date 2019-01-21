@@ -21,13 +21,22 @@
 #include "Dependencies/GLM/glm/glm/mat4x4.hpp"
 #include "Dependencies/GLM/glm/glm/gtc/matrix_transform.hpp"
 
+#include "MathDefs.h"
 
 //===========================
 //Constants
 //===========================
 
-#define IMAGE_WIDTH  500	//1920
-#define IMAGE_HEIGHT 300	//1080
+//Test Width 1
+#define testX_1 1920 
+#define testX_2 200
+
+//Test Width 2
+#define testY_1 1080 
+#define testY_2 100 
+
+#define IMAGE_WIDTH  testX_1
+#define IMAGE_HEIGHT testY_1
 
 
 
