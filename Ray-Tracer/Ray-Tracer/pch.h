@@ -42,7 +42,7 @@
 #define IMAGE_WIDTH  testX_1
 #define IMAGE_HEIGHT testY_1
 
-#define SAMPLE_COUNT 10
+#define SAMPLE_COUNT 50
 
 
 

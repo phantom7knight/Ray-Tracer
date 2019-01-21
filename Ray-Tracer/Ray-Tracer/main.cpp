@@ -5,44 +5,16 @@
 #include "Source/Shapes.h"
 #include "Source/Camera.h"
 
-
-//glm::vec3 Normalize(glm::vec3 right)
-//{
-//	return  right / (sqrt(right[0] * right[0] + right[1] * right[1] + right[2] * right[2]));
-//}
-//
-//glm::vec3 Lerp(glm::vec3 A, glm::vec3 B, float t)
-//{
-//	return (1 - t)*A + t * B;
-//}
-//
-//float dotProduct(glm::vec3 A, glm::vec3 B)
-//{
-//	return (A.x*B.x + A.y*B.y + A.z*B.z);
-//}
-
-/*float Sphere_hit(glm::vec3 sphere_center, float radius, Ray& ray)
+glm::vec3 random_point_sphere()
 {
-	glm::vec3 OC = ray.getOrigin() - sphere_center;
-	
-	float a = dotProduct(ray.getDirection(), ray.getDirection());
-	float b = 2.0 * dotProduct(OC, ray.getDirection());
-	float c = dotProduct(OC, OC) - radius * radius;
-	float D = b * b - 4 * a*c;
-	
-	if (D < 0)
-	{
-		return -1.0;						//No Intersections
-	}
-	else
-	{
-		return (-b - sqrt(D)) / (2 * a);	//One of the Points ,other can be calculated using -b+.......... Also return smallest +ve amond t- & t+
-	}
+	glm::vec3 p;
 
+	do {
+		p =  2.0f * glm::vec3(getRandomNumber(), getRandomNumber(), getRandomNumber()) - glm::vec3(1, 1, 1);
+	} while (vector_square(p) >= 1.0);
 
-}*/
-
-
+	return p;
+}
 
 glm::vec3 GetColor( Ray& ray,Intersection* world)
 {
@@ -54,7 +26,8 @@ glm::vec3 GetColor( Ray& ray,Intersection* world)
 
 	if (world->hit(ray, 0.0, INFINITY, rec))
 	{
-		return 0.5f*glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
+		glm::vec3 target = rec.point_intersection + rec.Normal + random_point_sphere();
+		return 0.5f * GetColor( &Ray(rec.point_intersection,target - rec.point_intersection), world);//glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
 	}
 	else
 	{
@@ -111,11 +84,11 @@ int main()
 			
 			for (int s = 0; s < SAMPLE_COUNT; ++s)
 			{
-				float u = float(i + (double)(rand() / RAND_MAX)) / (float)IMAGE_WIDTH;
-				float v = float(j + (double)(rand() / RAND_MAX)) / (float)IMAGE_HEIGHT;
+				float u = float(i + getRandomNumber()) / (float)IMAGE_WIDTH;
+				float v = float(j + getRandomNumber()) / (float)IMAGE_HEIGHT;
 				
 
-				Ray ray = cam.get_Ray(u, v);
+				 Ray ray = cam.get_Ray(u, v);
 				
 				getColor += GetColor(ray, world);
 

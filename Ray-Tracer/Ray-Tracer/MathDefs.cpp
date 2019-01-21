@@ -13,8 +13,18 @@
 		return (1 - t)*A + t * B;
 	}
 
+	float vector_square(glm::vec3 right)
+	{
+		return (right.x * right.x + right.y * right.y + right.z * right.z);
+	}
+
+
 	float dotProduct(glm::vec3 A, glm::vec3 B)
 	{
 		return (A.x*B.x + A.y*B.y + A.z*B.z);
 	}
 
+	double getRandomNumber()
+	{
+		return rand() / RAND_MAX;
+	}
