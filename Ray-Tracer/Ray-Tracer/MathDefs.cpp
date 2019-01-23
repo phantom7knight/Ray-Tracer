@@ -26,5 +26,6 @@
 
 	double getRandomNumber()
 	{
-		return rand() / RAND_MAX;
+		auto num = rand(); 
+		return ((double)num / RAND_MAX);
 	}

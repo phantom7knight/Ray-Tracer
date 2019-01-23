@@ -11,7 +11,10 @@ glm::vec3 random_point_sphere()
 
 	do 
 	{
-		p = 2.0f * glm::vec3(getRandomNumber(), getRandomNumber(), getRandomNumber()) - glm::vec3(1, 1, 1);
+		auto a = (float)getRandomNumber();
+		auto b = (float)getRandomNumber();
+		auto c = (float)getRandomNumber();
+		p = 2.0f * glm::vec3(a,b,c) - glm::vec3(1, 1, 1);
 	} while (vector_square(p) >= 1.0);
 
 	return p;
@@ -25,11 +28,14 @@ glm::vec3 GetColor(const Ray& ray,Intersection* world)
 	glm::vec3 sphere_color	= glm::vec3(1.0, 0.5, 0.5);
 	glm::vec3 sphere_center = glm::vec3(0, 0, -1);
 
+	auto yolo_test = INFINITY;
 	if (world->hit(ray, 0.001f, INFINITY, rec))
 	{
 		glm::vec3 target = rec.point_intersection + rec.Normal + random_point_sphere();
-		//return 0.5f * glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
 		return 0.5f * GetColor(Ray(rec.point_intersection, target - rec.point_intersection), world);
+
+		//To print normal Color's of the scene sphere's
+		//return 0.5f * glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
 	}
 	else
 	{
