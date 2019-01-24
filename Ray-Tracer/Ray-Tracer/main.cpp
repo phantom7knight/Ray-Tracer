@@ -63,9 +63,9 @@ int main()
 
 	Intersection *list[4];
 	list[0] = new Sphere(glm::vec3(0, 0, -1), 0.5f, new Lambertian(glm::vec3(0.8, 0.3, 0.3)));
-	list[1] = new Sphere(glm::vec3( 0,-100,-1), 100, new Lambertian(glm::vec3(0.8, 0.8, 0.0)));
+	list[1] = new Sphere(glm::vec3( 0,-100,-10), 100, new Lambertian(glm::vec3(0.8, 0.8, 0.0)));
 	list[2] = new Sphere(glm::vec3( 1.0, 0, -1), 0.5, new Metal(glm::vec3(0.8, 0.6, 0.2)));
-	list[3] = new Sphere(glm::vec3( -1.0, 0, -1), 0.15, new Lambertian(glm::vec3(0.8, 0.8, 0.8)));
+	list[3] = new Sphere(glm::vec3( -1.0, 0, -1), 0.15, new Dielectric(1.5));// Lambertian(glm::vec3(0.8, 0.8, 0.8))
 
 	Intersection* world = new hitable_list(list, 4);
 	Camera cam;

@@ -44,3 +44,8 @@
 
 		return p;
 	}
+
+	float Length(glm::vec3 right)
+	{
+		return (sqrt(right[0] * right[0] + right[1] * right[1] + right[2] * right[2]));
+	}
