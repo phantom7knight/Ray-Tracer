@@ -29,3 +29,18 @@
 		auto num = rand(); 
 		return ((double)num / RAND_MAX);
 	}
+
+	glm::vec3 random_point_sphere()
+	{
+		glm::vec3 p;
+
+		do
+		{
+			auto a = (float)getRandomNumber();
+			auto b = (float)getRandomNumber();
+			auto c = (float)getRandomNumber();
+			p = 2.0f * glm::vec3(a, b, c) - glm::vec3(1, 1, 1);
+		} while (vector_square(p) >= 1.0);
+
+		return p;
+	}

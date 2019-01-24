@@ -140,6 +140,7 @@
     <ClInclude Include="Source\Camera.h" />
     <ClInclude Include="Source\hitablelist.h" />
     <ClInclude Include="Source\Intersection.h" />
+    <ClInclude Include="Source\Material.h" />
     <ClInclude Include="Source\Ray.h" />
     <ClInclude Include="Source\Shapes.h" />
   </ItemGroup>

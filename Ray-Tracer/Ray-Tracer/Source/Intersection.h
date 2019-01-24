@@ -2,11 +2,14 @@
 //#include "../pch.h"
 #include "Ray.h"
 
+
+
 struct hit_record
 {
 	float t;
 	glm::vec3 point_intersection;
 	glm::vec3 Normal;
+	class Material *material_ptr;
 };
 
 

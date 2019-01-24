@@ -21,6 +21,7 @@ bool Sphere::hit(const Ray & ray, float t_min, float t_max, hit_record & rec) co
 			rec.t = temp;
 			rec.point_intersection = ray.PointRayIntersection(rec.t);
 			rec.Normal = (rec.point_intersection - m_center) / m_radius;
+			rec.material_ptr = m_material_ptr;
 
 			return true;
 		}
@@ -31,6 +32,7 @@ bool Sphere::hit(const Ray & ray, float t_min, float t_max, hit_record & rec) co
 			rec.t = temp;
 			rec.point_intersection = ray.PointRayIntersection(rec.t);
 			rec.Normal = (rec.point_intersection - m_center) / m_radius;
+			rec.material_ptr = m_material_ptr;
 
 			return true;
 		}

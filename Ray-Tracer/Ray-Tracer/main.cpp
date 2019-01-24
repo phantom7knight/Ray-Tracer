@@ -4,36 +4,29 @@
 #include "Source/hitablelist.h"
 #include "Source/Shapes.h"
 #include "Source/Camera.h"
+#include "Source/Material.h"
 
-glm::vec3 random_point_sphere()
-{
-	glm::vec3 p;
-
-	do 
-	{
-		auto a = (float)getRandomNumber();
-		auto b = (float)getRandomNumber();
-		auto c = (float)getRandomNumber();
-		p = 2.0f * glm::vec3(a,b,c) - glm::vec3(1, 1, 1);
-	} while (vector_square(p) >= 1.0);
-
-	return p;
-}
-
-glm::vec3 GetColor(const Ray& ray,Intersection* world)
+//=============================================================
+//Get the Color on each Pixel after being ray traced
+//=============================================================
+glm::vec3 GetColor(const Ray& ray,Intersection* world,int depth)
 {
 	hit_record rec;
 
-	float sphere_radius		= 0.5;
-	glm::vec3 sphere_color	= glm::vec3(1.0, 0.5, 0.5);
-	glm::vec3 sphere_center = glm::vec3(0, 0, -1);
-
-	auto yolo_test = INFINITY;
+	
 	if (world->hit(ray, 0.001f, INFINITY, rec))
 	{
-		glm::vec3 target = rec.point_intersection + rec.Normal + random_point_sphere();
-		return 0.5f * GetColor(Ray(rec.point_intersection, target - rec.point_intersection), world);
-
+		Ray scattered;
+		glm::vec3 attenuation = glm::vec3(1,0,1);
+		if (depth < 50 && rec.material_ptr->scatter(ray, rec, attenuation, scattered))
+		{
+			return attenuation * GetColor(scattered, world, depth + 1);
+		}
+		else
+		{
+			return glm::vec3(0, 0, 0);
+		}
+		
 		//To print normal Color's of the scene sphere's
 		//return 0.5f * glm::vec3(rec.Normal.x + 1, rec.Normal.y + 1, rec.Normal.z + 1);
 	}
@@ -68,11 +61,13 @@ int main()
 	//==========================================================================
 
 
-	Intersection *list[2];
-	list[0] = new Sphere(glm::vec3(-0.2, 0, -1), 0.15);
-	list[1] = new Sphere(glm::vec3( 0.2, 0, -1), 0.15);
+	Intersection *list[4];
+	list[0] = new Sphere(glm::vec3(0, 0, -1), 0.5f, new Lambertian(glm::vec3(0.8, 0.3, 0.3)));
+	list[1] = new Sphere(glm::vec3( 0,-100,-1), 100, new Lambertian(glm::vec3(0.8, 0.8, 0.0)));
+	list[2] = new Sphere(glm::vec3( 1.0, 0, -1), 0.5, new Metal(glm::vec3(0.8, 0.6, 0.2)));
+	list[3] = new Sphere(glm::vec3( -1.0, 0, -1), 0.15, new Lambertian(glm::vec3(0.8, 0.8, 0.8)));
 
-	Intersection* world = new hitable_list(list, 2);
+	Intersection* world = new hitable_list(list, 4);
 	Camera cam;
 
 	for (int j = IMAGE_HEIGHT -1; j >= 0; j--)
@@ -93,11 +88,9 @@ int main()
 
 				Ray ray = cam.get_Ray(u, v);
 				glm::vec3 p = ray.PointRayIntersection(2.0);
-				getColor += GetColor(ray, world);
+				getColor += GetColor(ray, world,0);
 
 			}
-
-			//Anti Aliasing take avg of the pixel sample count
 
 			getColor /= float(SAMPLE_COUNT);
 
