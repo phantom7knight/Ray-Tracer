@@ -41,10 +41,11 @@
 #define testY_2 100 
 #define testY_3 10 
 
+
 #define IMAGE_WIDTH  testX_1
 #define IMAGE_HEIGHT testY_1
 
-#define SAMPLE_COUNT 50
+#define SAMPLE_COUNT 10
 
 
 

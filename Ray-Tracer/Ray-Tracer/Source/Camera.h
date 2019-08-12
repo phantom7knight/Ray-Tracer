@@ -7,8 +7,10 @@ class Camera
 public:
 	Camera();
 	Ray get_Ray(float u, float v);
-private:
 
+
+
+private:
 	glm::vec3 lower_left_corner;
 	glm::vec3 horizontal;
 	glm::vec3 vertical;

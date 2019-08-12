@@ -16,6 +16,7 @@ public:
 	inline glm::vec3 getDirection()const;
 
 	glm::vec3 PointRayIntersection(float t)const;
+
 private:
 
 	glm::vec3 m_rayDir;

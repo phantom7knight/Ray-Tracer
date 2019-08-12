@@ -1,8 +1,12 @@
 #pragma once
 
 #include "Intersection.h"
+class Material;
 
 
+//==============================
+//Sphere
+//==============================
 class Sphere :public Intersection
 {
 public:
@@ -38,3 +42,8 @@ inline Material* Sphere::getMaterial()
 {
 	return m_material_ptr;
 }
+
+
+//==============================
+//
+//==============================

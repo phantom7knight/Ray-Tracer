@@ -9,7 +9,7 @@
 //=============================================================
 //Get the Color on each Pixel after being ray traced
 //=============================================================
-glm::vec3 GetColor(const Ray& ray,Intersection* world,int depth)
+glm::vec3 GetColor(const Ray& ray, Intersection* world, int depth)
 {
 	hit_record rec;
 
@@ -97,6 +97,7 @@ int main()
 			//Ray ray(origin, lower_left_corner + u * horizontal + v * vertical);
 			getColor = glm::vec3(sqrt(getColor.x), sqrt(getColor.y), sqrt(getColor.z));
 			
+
 			int ir = int(255.99 * getColor.x);
 			int ig = int(255.99 * getColor.y);
 			int ib = int(255.99 * getColor.z);

@@ -18,7 +18,6 @@
 		return (( right.x * right.x) + (right.y * right.y) + (right.z * right.z));
 	}
 
-
 	float dotProduct(glm::vec3 A, glm::vec3 B)
 	{
 		return (A.x*B.x + A.y*B.y + A.z*B.z);
